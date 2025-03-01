@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Fotos</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        /* Estilos específicos para o carrossel */
+        /* Estilos específicos para o carrossel */
+.carrossel {
+    width: 100%;
+    max-width: 800px;
+    height: 500px; /* Altura fixa para o contêiner */
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carrossel img {
+    width: 100%;
+    height: 100%; /* Faz a imagem ocupar toda a altura do contêiner */
+    object-fit: cover; /* Mantém a proporção e cobre o espaço */
+    display: none;
+    border-radius: 10px;
+}
+
+.carrossel img.visible {
+    display: block;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.carrossel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.carrossel button.prev {
+    left: 10px;
+}
+
+.carrossel button.next {
+    right: 10px;
+}
+    </style>
+</head>
+<body>
+          <div id="muief"><h1>Fotinhas da minha mulher</h1></div>
+    <section>
+        
+        <div class="carrossel">
+            <img src="../img/foto1.jpeg" alt="Foto 1" class="visible">
+            <img src="../img/foto2.jpeg" alt="Foto 2">
+            <img src="../img/foto3.jpeg" alt="Foto 3">
+            <img src="../img/foto4.jpeg" alt="Foto 4">
+            <img src="../img/foto5.jpeg" alt="Foto 5">
+            <img src="../img/foto6.jpeg" alt="Foto 6">
+            <img src="../img/foto7.jpeg" alt="Foto 7">
+            <img src="../img/foto9.jpeg" alt="Foto 9">
+            <img src="../img/foto10.jpeg" alt="Foto 10">
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <script>
+        // Script para o carrossel
+        const images = document.querySelectorAll('.carrossel img');
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('visible', i === index);
+            });
+        }
+
+        document.querySelector('.carrossel button.prev').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(currentImageIndex);
+        });
+
+        document.querySelector('.carrossel button.next').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        });
+    </script>
+</body>
+</html>
