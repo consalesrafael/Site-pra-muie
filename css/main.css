@@ -1,0 +1,308 @@
+@charset "UTF-8";
+
+/* Estilos gerais */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Century Gothic", sans-serif;
+    background-color: #d1131c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto; /* Permite rolagem se o conteúdo for maior que a tela */
+}
+
+/* Cabeçalho */
+header {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #a50008;
+}
+
+header img {
+    height: 200px; /* Tamanho reduzido para telas menores */
+    width: auto; /* Mantém a proporção */
+    margin: 10px;
+}
+
+header h1 {
+    font-size: 3rem; /* Tamanho relativo */
+    color: black;
+    text-align: center;
+    margin: 0 20px;
+    
+}
+
+/* Seção principal */
+section {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#solo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Limita a largura máxima */
+    margin-top: 20px;
+}
+
+.left, .right {
+    width: 20%; /* Largura relativa */
+    height: auto;
+}
+
+#titulos {
+    text-align: center;
+    margin: 0 10px;
+}
+
+h2 {
+    font-size: 2.5rem; /* Tamanho relativo */
+    color: white;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem; /* Tamanho relativo */
+}
+
+/* Botão */
+#botao {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#botao button {
+    background-color: #ff9900;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem; /* Tamanho relativo */
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#botao button:hover {
+    background-color: #e68900;
+    transform: scale(1.1);
+}
+
+#botao button:active {
+    background-color: #cc7a00;
+    transform: scale(1);
+}
+
+/* Presente */
+.gift-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gift-box {
+    position: relative;
+    width: 100px; /* Tamanho reduzido */
+    height: 100px; /* Tamanho reduzido */
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+.lid, .box, .ribbon {
+    position: absolute;
+    background-color: #ff00ea;
+}
+
+.lid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #800080; /* Roxo */
+    border-radius: 10px 10px 0 0;
+    transform-origin: bottom;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Adiciona transição de opacidade */
+}
+
+.box {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    transition: opacity 1s ease-in-out; /* Adiciona transição de opacidade */
+}
+
+.ribbon {
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* Animação de abrir o presente */
+.gift-box.open .lid {
+    transform: rotateX(180deg); /* Gira a tampa */
+    opacity: 0; /* Torna a tampa totalmente opaca */
+}
+
+.gift-box.open .box {
+    opacity: 0; /* Faz a caixa desaparecer */
+}
+
+/* Flores */
+.flowers {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.flowers.visible {
+    display: flex;
+    animation: flowersOut 2s ease-in-out forwards;
+}
+
+.flower {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    opacity: 0;
+    animation: flowerAnimation 2s ease-in-out forwards;
+}
+
+@keyframes flowersOut {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes flowerAnimation {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Confetes */
+.confetti {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: confettiAnimation 2s ease-out forwards;
+}
+
+.confetti-piece.red { background-color: #ff0000; }
+.confetti-piece.yellow { background-color: #ffcc00; }
+.confetti-piece.blue { background-color: #0000ff; }
+.confetti-piece.green { background-color: #00ff00; }
+.confetti-piece.purple { background-color: #800080; }
+.confetti-piece.orange { background-color: #ffa500; }
+.confetti-piece.pink { background-color: #ffc0cb; }
+.confetti-piece.teal { background-color: #008080; }
+.confetti-piece.gold { background-color: #ffd700; }
+.confetti-piece.silver { background-color: #c0c0c0; }
+
+@keyframes confettiAnimation {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(
+            calc(100px * var(--x)), 
+            calc(-200px * var(--y))
+        ) rotate(720deg);
+    }
+}
+
+.confetti-piece:nth-child(1) { --x: -1; --y: 1; animation-delay: 0s; }
+.confetti-piece:nth-child(2) { --x: -0.8; --y: 0.9; animation-delay: 0.2s; }
+.confetti-piece:nth-child(3) { --x: -0.6; --y: 0.8; animation-delay: 0.4s; }
+.confetti-piece:nth-child(4) { --x: -0.4; --y: 0.7; animation-delay: 0.6s; }
+.confetti-piece:nth-child(5) { --x: -0.2; --y: 0.6; animation-delay: 0.8s; }
+.confetti-piece:nth-child(6) { --x: 0; --y: 0.5; animation-delay: 1s; }
+.confetti-piece:nth-child(7) { --x: 0.2; --y: 0.4; animation-delay: 1.2s; }
+.confetti-piece:nth-child(8) { --x: 0.4; --y: 0.3; animation-delay: 1.4s; }
+.confetti-piece:nth-child(9) { --x: 0.6; --y: 0.2; animation-delay: 1.6s; }
+.confetti-piece:nth-child(10) { --x: 0.8; --y: 0.1; animation-delay: 1.8s; }
+
+/* Media Queries para telas maiores */
+@media (min-width: 1200px) {
+    header h1 {
+        font-size: 4rem; /* Aumenta o tamanho do título em telas maiores */
+    }
+
+    h2 {
+        font-size: 3rem; /* Aumenta o tamanho do subtítulo em telas maiores */
+    }
+
+    .left, .right {
+        width: 25%; /* Aumenta a largura das imagens em telas maiores */
+    }
+}
+
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empilha os elementos do cabeçalho */
+    }
+
+    header img {
+        height: 100px; /* Reduz o tamanho das imagens em telas menores */
+    }
+
+    header h1 {
+        font-size: 2rem; /* Reduz o tamanho do título em telas menores */
+    }
+
+    h2 {
+        font-size: 1.8rem; /* Reduz o tamanho do subtítulo em telas menores */
+    }
+
+    #solo {
+        flex-direction: column; /* Empilha os elementos da seção */
+    }
+
+    .left, .right {
+        width: 50%; /* Aumenta a largura das imagens em telas menores */
+        margin: 10px 0;
+    }
+}
